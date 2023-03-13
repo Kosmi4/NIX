@@ -1,18 +1,18 @@
 from pytube import YouTube
 
-# Запрос URL видео и разбивка его на части
-url = input("Введите URL видео на YouTube: ")
+# URL
+url = input("Insert URL YouTube: ")
 yt = YouTube(url)
 
-# Печать доступных потоков
-print("Доступные потоки для загрузки:")
+# Itags in video
+print("Itag's:")
 for stream in yt.streams.filter(only_audio=True, mime_type="audio/webm"):
     print(stream.abr + " (" + "itag=" + str(stream.itag) + ")")
     
 
-# Выбор потока и скачивание аудиофайла
-itag = input("Выберите ITAG для потока, который нужно загрузить: ")
+# pick video 
+itag = input("pick ITAG: ")
 stream = yt.streams.get_by_itag(itag)
-print("Скачивание аудиофайла...")
+print("Downloading file...")
 stream.download(output_path="Download", filename_prefix="audio_")
-print("Аудиофайл успешно загружен!")
+print("Downloading finished")
